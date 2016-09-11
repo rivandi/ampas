@@ -1,13 +1,12 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 Half-hearted implementation of 
 https://en.wikipedia.org/wiki/Canopy_clustering_algorithm
 """
 
-import mathlib
-import random
 from collections import defaultdict
+from mathlib import cosine_similarity
 
 def calculate_similarity(history):
 	"""
@@ -29,12 +28,12 @@ def calculate_similarity(history):
 		}
 	"""	
 	result = defaultdict(dict)
-	users = list(history.iterkeys())
+	users = list(history.keys())
 	for i, user1 in enumerate(users):
 		for user2 in users[i+1:]:
 			x = history[user1]
 			y = history[user2]
-			distance = mathlib.cosine(x, y)
+			distance = cosine_similarity(x, y)
 			result[user1][user2] = distance
 			result[user2][user1] = distance
 	return result
@@ -89,11 +88,16 @@ def cluster_canopy(user_similarity, loose, tight):
 	return clusters
 
 if __name__ == '__main__':
+	import random
 	history = {}
-	for u in xrange(1,10):
-		h = [random.randint(0, 1) for y in xrange(10)]
-		history[u] = h
-	user_similarity = calculate_similarity(history)
+	user_number = 10
+	item_number = 10
 	loose = 0.4
 	tight = 0.7
-	s = count_canopy(user_similarity, loose, tight)
+	
+	for u in range(user_number):
+		h = [random.randint(0, 1) for y in range(item_number)]
+		history[u] = h
+	user_similarity = calculate_similarity(history)
+	s = cluster_canopy(user_similarity, loose, tight)
+	print(s)
