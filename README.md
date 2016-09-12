@@ -3,3 +3,6 @@ I am happy to share my presumably existent knowlegde through buggy and convolute
 Feel free to use them for final project and present them as yours, if your conscience doesn't bother you.
 
 Can I get away by saying that the license is MIT?
+
+## Table of Content
+1. [Canopy](/python/canopy.py) 
