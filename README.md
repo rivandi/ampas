@@ -5,4 +5,4 @@ Feel free to use them for final project and present them as yours, if your consc
 Can I get away by saying that the license is MIT?
 
 ## Table of Content
-1. [Canopy](/riyadd/ampas/python/canopy.py) 
+1. [Canopy](python/canopy.py) 
